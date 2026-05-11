@@ -1,0 +1,419 @@
+<?php
+// ============================================
+// guestbook.php  —  Main guestbook page
+// ============================================
+
+require_once __DIR__ . '/db_config.php';
+
+// ---- Pagination ----
+$per_page    = 10;
+$current_page = max(1, (int) ($_GET['page'] ?? 1));
+$offset      = ($current_page - 1) * $per_page;
+
+// ---- Fetch entries & stats ----
+try {
+    $pdo = get_pdo();
+
+    $total = (int) $pdo->query('SELECT COUNT(*) FROM guestbook_entries')->fetchColumn();
+    $total_pages = max(1, (int) ceil($total / $per_page));
+    $current_page = min($current_page, $total_pages);
+    $offset = ($current_page - 1) * $per_page;
+
+    $entries = $pdo->query(
+        "SELECT * FROM guestbook_entries ORDER BY created_at DESC LIMIT {$per_page} OFFSET {$offset}"
+    )->fetchAll();
+
+    $last_signed = null;
+    if ($total > 0) {
+        $last_signed = $pdo->query(
+            "SELECT name, created_at FROM guestbook_entries ORDER BY created_at DESC LIMIT 1"
+        )->fetch();
+    }
+
+    $recent_signers = $pdo->query(
+        "SELECT name FROM guestbook_entries ORDER BY created_at DESC LIMIT 5"
+    )->fetchAll(PDO::FETCH_COLUMN);
+
+    $db_error = false;
+} catch (PDOException $e) {
+    error_log('Guestbook page error: ' . $e->getMessage());
+    $db_error   = true;
+    $total      = 0;
+    $entries    = [];
+    $total_pages = 1;
+    $last_signed = null;
+    $recent_signers = [];
+}
+
+// ---- Helpers ----
+function h(string $s): string {
+    return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function mood_emoji(string $mood): string {
+    return match($mood) {
+        'happy'    => ':) happy',
+        'excited'  => '!! excited!!',
+        'bored'    => '-_- bored',
+        'sad'      => ':( sad',
+        'angry'    => '>:( angry',
+        'silly'    => 'XD silly',
+        'tired'    => 'x_x tired',
+        'confused' => 'o_O confused',
+        'hyper'    => '^_^ hyper',
+        'creative' => '~~ creative',
+        default    => '',
+    };
+}
+
+$range_start = $total === 0 ? 0 : $offset + 1;
+$range_end   = min($offset + $per_page, $total);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>~*~ Jack's Vault ~*~ GUESTBOOK ~*~</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    .gb-form input[type="text"],.gb-form textarea,.gb-form select{background:#110011;border:1px solid #660099;color:#ff99ff;font-family:Verdana,Arial,sans-serif;font-size:11px;padding:3px 4px;width:97%}
+    .gb-form textarea{height:70px;resize:vertical}
+    .gb-form input[type="text"]:focus,.gb-form textarea:focus{border-color:#ff00ff;outline:none}
+    .gb-form label{display:block;color:#cc99ff;font-size:10px;margin-bottom:2px;margin-top:6px}
+    .gb-form input[type="submit"]{background:#660099;border:1px solid #ff00ff;color:#fff;cursor:pointer;font-family:Verdana,Arial,sans-serif;font-size:11px;font-weight:bold;padding:3px 14px;margin-top:8px}
+    .gb-form input[type="submit"]:hover{background:#9900cc}
+    .gb-form input[type="reset"]{background:#330033;border:1px solid #660066;color:#cc99cc;cursor:pointer;font-family:Verdana,Arial,sans-serif;font-size:11px;padding:3px 10px;margin-top:8px;margin-left:4px}
+    .gb-form select{width:auto}
+    .gb-form .char-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+    .gb-form .char-row button{background:#220022;border:1px solid #660066;color:#ff99ff;cursor:pointer;font-size:11px;padding:1px 5px}
+    .gb-form .char-row button:hover{background:#440044}
+    .gb-entry{border:1px solid #440066;background:#0d000d;padding:6px 8px;margin-bottom:8px;font-size:11px}
+    .gb-entry .entry-header{border-bottom:1px dotted #660066;padding-bottom:3px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px}
+    .gb-entry .entry-name{color:#ff66ff;font-weight:bold}
+    .gb-entry .entry-meta{color:#996699;font-size:10px}
+    .gb-entry .entry-mood{color:#cc99ff;font-size:10px;font-style:italic;margin-bottom:3px}
+    .gb-entry .entry-body{color:#ddaadd;line-height:1.5}
+    .gb-entry .entry-url{font-size:10px;margin-top:3px}
+    .gb-success{background:#001100;border:1px solid #00cc00;color:#00ff00;font-size:11px;padding:5px 8px;margin-bottom:8px;display:none}
+    .gb-error{background:#110000;border:1px solid #cc0000;color:#ff4444;font-size:11px;padding:5px 8px;margin-bottom:8px;display:none}
+    .entry-count{color:#996699;font-size:10px;text-align:right;margin-bottom:4px}
+    .gb-form .row-2col{display:flex;gap:8px}
+    .gb-form .row-2col>div{flex:1}
+    .gb-pagination{text-align:center;font-size:11px;margin-top:6px;color:#996699}
+    .gb-pagination a,.gb-pagination span{display:inline-block;padding:1px 6px;border:1px solid #440066;margin:0 2px;color:#cc99ff;text-decoration:none}
+    .gb-pagination span.active{background:#330066;color:#fff}
+    .db-error-box{background:#110000;border:1px solid #cc0000;color:#ff6666;padding:8px;font-size:11px;margin-bottom:8px;}
+  </style>
+</head>
+<body>
+
+<marquee behavior="scroll" direction="left" scrollamount="4">
+  &hearts; SIGN MY GUESTBOOK &hearts; &nbsp;&nbsp;&nbsp; TELL ME WHAT U THINK OF MY SITE!!! &nbsp;&nbsp;&nbsp;
+  BE NICE OR DONT BOTHER &nbsp;&nbsp;&nbsp; &hearts; SIGN MY GUESTBOOK &hearts;
+</marquee>
+
+<div id="title">
+  <h1>~*~ Jack's Vault ~*~</h1>
+  <p id="subtitle">*** GUESTBOOK *** &nbsp;&nbsp; Sign it!! &nbsp;&nbsp; <a href="index.html" style="color:#ff99ff;">&#171; back to home</a></p>
+</div>
+
+<table id="main-table" cellpadding="5" cellspacing="2" border="0"><tr>
+
+  <!-- LEFT SIDEBAR -->
+  <td id="sidebar-left">
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; NAVIGATION &#9668;</div>
+      <a href="index.html">&#187; Home</a><br>
+      <a href="aboutme.html">&#187; About Me</a><br>
+      <a href="myphotos.html">&#187; My Photos</a><br>
+      <a href="poems.html">&#187; My Poems</a><br>
+      <a href="covers.php">&#187; Covers</a><br>
+      <a href="daily.html">&#187; Daily Poll</a><br>
+      <a href="friends.html">&#187; Friends</a><br>
+      <a href="quiz.html">&#187; Quizzes</a><br>
+      <a href="guestbook.php">&#187; Guestbook</a><br>
+      <a href="portfolio.html">&#187; Portfolio</a><br>
+      <a href="contact.html">&#187; Contact</a><br>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; ONLINE STATUS &#9668;</div>
+      &nbsp;xX_KillerJack69_Xx<br>
+      <small><i>AIM: xX_KillerJack69_Xx</i></small><br>
+      <small><i>MSN: jackrogers@hotmail.com</i></small>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; GB STATS &#9668;</div>
+      <p style="font-size:10px;text-align:center;">
+        Total entries: <b><?= $total ?></b><br><br>
+        <span style="color:#ff99ff;">Last signed:</span><br>
+        <?php if ($last_signed): ?>
+          <span style="color:#cc99ff;font-style:italic;font-size:10px;">
+            <?= h($last_signed['name']) ?><br>
+            <span style="color:#886688;"><?= h(date('M j, Y', strtotime($last_signed['created_at']))) ?></span>
+          </span>
+        <?php else: ?>
+          <span style="color:#cc99ff;font-style:italic;font-size:10px;">nobody yet...</span><br><br>
+          <span style="color:#ff00ff;">&#9733; be the first!! &#9733;</span>
+        <?php endif; ?>
+      </p>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; RULES &#9668;</div>
+      <p style="font-size:10px;color:#cc99ff;">
+        &bull; Be nice!!<br>&bull; No spam plz<br>&bull; No mean stuff<br>&bull; Link ur site!!<br>&bull; Have fun :)<br><br>
+        <b style="color:#ff0099;">Meanies will be deleted!!</b>
+      </p>
+    </div>
+  </td>
+
+  <!-- MAIN CONTENT -->
+  <td id="content">
+    <div class="content-box">
+      <div class="box-title">&#9733; Sign My Guestbook!! &#9733;</div>
+      <p style="font-size:11px;color:#cc99ff;margin-bottom:8px;">OMG hi!! Thx 4 visiting!! Fill out the form below and click SIGN IT!! :D</p>
+
+      <?php if ($db_error): ?>
+        <div class="db-error-box">&#10007; Database connection error!! The guestbook is temporarily down. :( Check db_config.php!</div>
+      <?php endif; ?>
+
+      <div class="gb-success" id="success-msg">&#10003; YAY!! Your entry was added!! Thankies so much for signing!! &#9829;</div>
+      <div class="gb-error" id="error-msg">&#10007; Oops!! Please fill in your name and message!! (&gt;_&lt;)</div>
+
+      <div class="gb-form">
+        <div class="row-2col">
+          <div><label>Your Name / Username: *</label><input type="text" id="inp-name" maxlength="80" placeholder="e.g. sk8er_boi_mike"></div>
+          <div><label>Your Location:</label><input type="text" id="inp-location" maxlength="80" placeholder="e.g. California, USA"></div>
+        </div>
+        <div class="row-2col">
+          <div><label>Your Website URL:</label><input type="text" id="inp-url" maxlength="200" placeholder="http://www.mysite.com"></div>
+          <div><label>Your AIM / MSN:</label><input type="text" id="inp-aim" maxlength="80" placeholder="xXcoolkid69Xx"></div>
+        </div>
+        <label>How did u find my site?</label>
+        <select id="inp-referrer">
+          <option value="">-- pick one --</option>
+          <option>Google / Yahoo</option><option>From a friend</option>
+          <option>Webring</option><option>Random surfing</option>
+          <option>I've been here b4 lol</option><option>Other</option>
+        </select>
+        <label>Current Mood:</label>
+        <select id="inp-mood">
+          <option value="">-- pick one --</option>
+          <option value="happy">:) happy</option><option value="excited">!! excited!!</option>
+          <option value="bored">-_- bored</option><option value="sad">:( sad</option>
+          <option value="angry">&gt;:( angry</option><option value="silly">XD silly</option>
+          <option value="tired">x_x tired</option><option value="confused">o_O confused</option>
+          <option value="hyper">^_^ hyper</option><option value="creative">~~ creative</option>
+        </select>
+        <label>Your Message: * <small style="color:#886688;">(be nice!! no html plz)</small></label>
+        <textarea id="inp-message" maxlength="500" placeholder="Omg ur site is so kewl!!! I luv ur taste in music!!"></textarea>
+        <div>
+          <label>Add some sparkle to ur name!! (optional):</label>
+          <div class="char-row">
+            <button type="button" onclick="addToName('~*~')">~*~</button>
+            <button type="button" onclick="addToName('*')">*</button>
+            <button type="button" onclick="addToName('xX')">xX</button>
+            <button type="button" onclick="addToName('Xx')">Xx</button>
+            <button type="button" onclick="addToName('^^')">^^</button>
+            <button type="button" onclick="addToName(':)')">:)</button>
+            <button type="button" onclick="addToName('<3')">&lt;3</button>
+            <button type="button" onclick="addToName('---')">---</button>
+            <button type="button" onclick="addToName('!!!')">!!!</button>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <input type="submit" value="&#9829; SIGN IT!! &#9829;" onclick="submitEntry()">
+          <input type="reset" value="Clear Form" onclick="clearForm()">
+        </div>
+      </div>
+    </div>
+
+    <!-- ENTRIES -->
+    <div class="content-box">
+      <div class="box-title">&#9733; Guestbook Entries &#9733;</div>
+      <div class="entry-count">
+        Showing entries <?= $range_start ?>–<?= $range_end ?> of <?= $total ?>
+      </div>
+
+      <div id="entries-container">
+        <?php if (empty($entries)): ?>
+          <p style="color:#996699;font-size:11px;text-align:center;font-style:italic;">No entries yet!! Be the first to sign!! &#9829;</p>
+        <?php else: ?>
+          <?php foreach ($entries as $e): ?>
+            <?php
+              $date_str = date('D M j, Y \a\t g:i A', strtotime($e['created_at']));
+              $mood_str = $e['mood'] ? mood_emoji($e['mood']) : '';
+            ?>
+            <div class="gb-entry">
+              <div class="entry-header">
+                <span class="entry-name"><?= h($e['name']) ?></span>
+                <span class="entry-meta">
+                  <?php if ($e['location']): ?><?= h($e['location']) ?> &bull; <?php endif; ?>
+                  <?= h($date_str) ?>
+                  <?php if ($e['referrer']): ?> &bull; via <?= h($e['referrer']) ?><?php endif; ?>
+                </span>
+              </div>
+              <?php if ($mood_str): ?>
+                <div class="entry-mood">mood: <?= h($mood_str) ?></div>
+              <?php endif; ?>
+              <div class="entry-body"><?= nl2br(h($e['message'])) ?></div>
+              <?php if ($e['website_url']): ?>
+                <div class="entry-url">
+                  &#187; <a href="<?= h($e['website_url']) ?>" target="_blank" rel="noopener" style="color:#cc66ff;"><?= h($e['website_url']) ?></a>
+                </div>
+              <?php endif; ?>
+              <?php if ($e['aim_msn']): ?>
+                <div class="entry-url" style="color:#996699;">AIM/MSN: <?= h($e['aim_msn']) ?></div>
+              <?php endif; ?>
+            </div>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </div>
+
+      <!-- Pagination -->
+      <?php if ($total_pages > 1): ?>
+        <div class="gb-pagination">
+          <?php if ($current_page > 1): ?>
+            <a href="?page=<?= $current_page - 1 ?>">&laquo; prev</a>
+          <?php endif; ?>
+          <?php for ($p = 1; $p <= $total_pages; $p++): ?>
+            <?php if ($p === $current_page): ?>
+              <span class="active"><?= $p ?></span>
+            <?php else: ?>
+              <a href="?page=<?= $p ?>"><?= $p ?></a>
+            <?php endif; ?>
+          <?php endfor; ?>
+          <?php if ($current_page < $total_pages): ?>
+            <a href="?page=<?= $current_page + 1 ?>">next &raquo;</a>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
+    </div>
+  </td>
+
+  <!-- RIGHT SIDEBAR -->
+  <td id="sidebar-right">
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; BLINKIES &#9668;</div>
+      <div style="text-align:center;line-height:2;">
+        <img src="https://external-media.spacehey.net/media/sxfxt8ozYNZxRnbRCXo6EceJqefu9Z4eR9kETccOIWFI=/https://64.media.tumblr.com/02aafb8de5336865a1c6627c78eb3795/72e2590fb9e2f26c-37/s250x400/c49ae6229e7e68680543723f1b1fc1fca0e79ebc.gifv" alt="HP Fan"><br>
+        <img src="https://external-media.spacehey.net/media/sG8LtA5e8EoTj_c3ycmD3QFEQfxsgUOP--nXNwx6kTtY=/https://64.media.tumblr.com/5d138942ac75363bda574a2f039e4e9b/72e2590fb9e2f26c-51/s250x400/6ca394878fa61678e63758cb4ba0b1d2e23d3f64.gifv" alt="LP"><br>
+        <img src="https://external-media.spacehey.net/media/sJMw7gnXLJaV1XTuCh-B7YbrAqPH6RcmVn5ONAMGpM7I=/https://64.media.tumblr.com/6d12a2374206fe6e8fde0798e3e32894/b4a8996229d50d4f-94/s250x400/3acc1cd69506129cb3b230f1a2d5765969d5869c.gifv" alt="Anime"><br>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; &#9829; Friends &#9668;</div>
+      <a href="https://www.instagram.com/axl_sloan_420/">&#9829;axl_sloan</a><br>
+      <a href="https://www.instagram.com/zeeny_x3/">&#9829;zeeny_x3</a><br>
+      <a href="https://www.instagram.com/khad1ja__ig">&#9829; khad1ja__ig</a><br>
+      <a href="https://www.instagram.com/___wonder_of_you___/">&#9829; Banshee</a><br>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; RECENT SIGNERS &#9668;</div>
+      <div style="font-size:10px;color:#cc99ff;line-height:1.8;">
+        <?php if (empty($recent_signers)): ?>
+          <i>Nobody yet!!</i>
+        <?php else: ?>
+          <?php foreach ($recent_signers as $signer): ?>
+            &#9733; <?= h($signer) ?><br>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="box-title">&#9658; WEBRINGS &#9668;</div>
+      <p style="font-size:9px;text-align:center;">
+        [<a href="#">&laquo; prev</a>] <a href="#"><b>HP Fansites Ring</b></a> [<a href="#">next &raquo;</a>]<br><br>
+        [<a href="#">&laquo; prev</a>] <a href="#"><b>Anime Lovers Ring</b></a> [<a href="#">next &raquo;</a>]
+      </p>
+    </div>
+  </td>
+
+</tr></table>
+
+<div id="footer">
+  <p>
+    &copy; 2003 xX_KillerJack69_Xx's Website &mdash; All rights reserved!<br>
+    <small>Created With Passion, Dedication And Nostalgia</small><br><br>
+    <a href="index.html">Home</a> &bull; <a href="aboutme.html">About</a> &bull; <a href="myphotos.html">Photos</a> &bull;
+    <a href="poems.html">Poems</a> &bull; <a href="guestbook.php">Guestbook</a> &bull; <a href="contact.html">Contact</a>
+  </p>
+  <p>
+    <img src="https://media1.tenor.com/m/7XD9gEkumN8AAAAd/internet-explorer-free.gif" alt="IE6 button" style="width:90px;height:30px;">
+    <img src="https://preview.redd.it/winamp-logo-v0-mmhrs1evq1qa1.jpg?auto=webp&s=59563ce9d5d3c515d2c27d04d1f03e7df0265a08" alt="Winamp button" style="width:90px;height:30px;">
+    <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Made w Notepad" style="width:90px;height:30px;">
+    <img src="https://euroring.neocities.org/images/euroring88x31.png" alt="Go Green" style="width:90px;height:30px;">
+  </p>
+</div>
+
+<script>
+// ---- Sparkle buttons ----
+function addToName(chars) {
+  var el = document.getElementById('inp-name');
+  el.value += chars;
+  el.focus();
+}
+
+function clearForm() {
+  ['inp-name','inp-location','inp-url','inp-aim','inp-message'].forEach(function(id){
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('inp-referrer').selectedIndex = 0;
+  document.getElementById('inp-mood').selectedIndex = 0;
+  document.getElementById('success-msg').style.display = 'none';
+  document.getElementById('error-msg').style.display   = 'none';
+}
+
+// ---- AJAX submit ----
+function submitEntry() {
+  var name    = document.getElementById('inp-name').value.trim();
+  var message = document.getElementById('inp-message').value.trim();
+  var successBox = document.getElementById('success-msg');
+  var errorBox   = document.getElementById('error-msg');
+  successBox.style.display = 'none';
+  errorBox.style.display   = 'none';
+
+  if (!name || !message) {
+    errorBox.textContent = '✗ Oops!! Please fill in your name and message!! (>_<)';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  var body = new URLSearchParams({
+    name:        name,
+    location:    document.getElementById('inp-location').value.trim(),
+    website_url: document.getElementById('inp-url').value.trim(),
+    aim_msn:     document.getElementById('inp-aim').value.trim(),
+    referrer:    document.getElementById('inp-referrer').value,
+    mood:        document.getElementById('inp-mood').value,
+    message:     message
+  });
+
+  fetch('submit.php', { method: 'POST', body: body })
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (data.ok) {
+        successBox.textContent = '✓ YAY!! Your entry was added!! Thankies so much for signing!! ♥';
+        successBox.style.display = 'block';
+        clearForm();
+        // Reload page after 1.5s so the new entry shows up properly
+        setTimeout(function(){ window.location.href = 'guestbook.php'; }, 1500);
+      } else {
+        errorBox.textContent = '✗ ' + (data.error || 'Something went wrong!!');
+        errorBox.style.display = 'block';
+      }
+    })
+    .catch(function() {
+      errorBox.textContent = '✗ Network error!! Check ur connection!! (>_<)';
+      errorBox.style.display = 'block';
+    });
+}
+</script>
+
+</body>
+</html>

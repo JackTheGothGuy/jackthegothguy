@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="quiz, which character are you, harry potter, personality quiz">
+  <meta name="description" content="Quizzes page - find out which character u r!!">
+  <title>~*~ Quizzes ~*~ xX_KillerJack69_Xx's Website ~*~</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    /* Quiz-specific styles */
+    .quiz-intro {
+      font-size: 11px;
+      color: #cc99ff;
+      padding: 4px 4px 2px 4px;
+      font-style: italic;
+    }
+    .quiz-question {
+      font-size: 11px;
+      color: #ffccff;
+      font-weight: bold;
+      margin: 8px 0 4px 0;
+    }
+    .quiz-option {
+      display: block;
+      font-size: 11px;
+      color: #cc99ff;
+      margin: 3px 0;
+      cursor: pointer;
+    }
+    .quiz-option input[type="radio"],
+    .quiz-option input[type="checkbox"] {
+      accent-color: #cc00cc;
+      margin-right: 4px;
+    }
+    .quiz-submit {
+      background: #660099;
+      border: 1px solid #ff00ff;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 11px;
+      font-family: Verdana, Arial, sans-serif;
+      padding: 3px 10px;
+      margin: 8px 0 4px 0;
+      font-weight: bold;
+    }
+    .quiz-result-box {
+      display: none;
+      background: #0d000d;
+      border: 2px dashed #ff00ff;
+      margin-top: 10px;
+      padding: 8px;
+      text-align: center;
+      font-size: 11px;
+    }
+    .quiz-result-box .result-title {
+      color: #ff99ff;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .quiz-result-box .result-desc {
+      color: #cc99ff;
+      font-style: italic;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+    .quiz-result-box img {
+      margin: 5px auto;
+      display: block;
+    }
+    .take-again {
+      font-size: 10px;
+      color: #996699;
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font-family: Verdana, Arial, sans-serif;
+      margin-top: 4px;
+    }
+    .quiz-error {
+      color: #ff0000;
+      font-size: 10px;
+      display: none;
+      margin-top: 3px;
+    }
+    .star-divider {
+      text-align: center;
+      color: #660099;
+      font-size: 10px;
+      margin: 6px 0;
+    }
+    /* Gallery table */
+    #quiz-gallery-section {
+      margin-bottom: 10px;
+    }
+    #quiz-gallery-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    #quiz-gallery-table td {
+      vertical-align: top;
+      padding: 4px 6px;
+      text-align: center;
+    }
+    #quiz-gallery-table img {
+      border: 1px solid #660099;
+    }
+    #quiz-gallery-table a:hover img {
+      border-color: #ff00ff;
+    }
+    /* The dynamic quiz area */
+    #quiz-area {
+      background: #1a001a;
+      border: 2px solid #660099;
+      padding: 6px 8px;
+      margin-top: 4px;
+      min-height: 80px;
+    }
+    /* Instruction text above gallery */
+    .gallery-instruction {
+      font-size: 11px;
+      color: #cc99ff;
+      text-align: center;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MARQUEE HEADER -->
+<marquee behavior="scroll" direction="left" scrollamount="4">
+  &hearts; WELCOME TO MY QUIZZES PAGE &hearts; &nbsp;&nbsp;&nbsp; FIND OUT WHICH CHARACTER U R!! &nbsp;&nbsp;&nbsp;
+  TAKE ALL THE QUIZZES &amp; POST UR RESULTS!! &nbsp;&nbsp;&nbsp; &hearts; SIGN MY GUESTBOOK IF U LIKED THEM &hearts;
+</marquee>
+
+<!-- MAIN TITLE -->
+<div id="title">
+  <h1>~*~ Quizzes!! ~*~</h1>
+  <p id="subtitle">
+    <blink>*** TAKE ALL THE QUIZZES!! ***</blink>
+    &nbsp;&nbsp; Page Last Updated: today
+  </p>
+</div>
+
+<!-- LAYOUT TABLE -->
+<table id="main-table" cellpadding="5" cellspacing="2" border="0">
+  <tr>
+
+    <!-- LEFT SIDEBAR -->
+    <td id="sidebar-left">
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; NAVIGATION &#9668;</div>
+        <a href="index.html">&#187; Home</a><br>
+        <a href="aboutme.html">&#187; About Me</a><br>
+        <a href="myphotos.html">&#187; My Photos</a><br>
+        <a href="poems.html">&#187; My Poems</a><br>
+        <a href="covers.php">&#187; Covers</a><br>
+        <a href="daily.html">&#187; Daily Poll</a><br>
+        <a href="friends.html">&#187; Friends</a><br>
+        <a href="quiz.html">&#187; Quizzes</a><br>
+        <a href="guestbook.php">&#187; Guestbook</a><br>
+        <a href="portfolio.html">&#187; Portfolio</a><br>
+        <a href="contact.html">&#187; Contact</a><br>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; ONLINE STATUS &#9668;</div>
+        <img src="https://kuribo64.net/board/img/smilies/biggrin.gif" alt="online"> &nbsp;xX_KillerJack69_Xx<br>
+        <small><i>AIM: xX_KillerJack69_Xx</i></small><br>
+        <small><i>MSN: jackrogers@hotmail.com</i></small>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; QUIZ STATS &#9668;</div>
+        <p style="font-size:10px; color:#cc99ff;">
+          <b style="color:#ff99ff;">Quizzes on this page:</b> 7<br>
+          <b style="color:#ff99ff;">Total times taken:</b> 1,337<br>
+          <b style="color:#ff99ff;">Most popular:</b><br>
+          <i>"Which HP Character?"</i><br><br>
+          <span style="color:#ff0099;">&#9733;</span> Post ur results in my guestbook!! <span style="color:#ff0099;">&#9733;</span>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; MY RESULTS &#9668;</div>
+        <p style="font-size:10px; text-align:center; color:#cc99ff;">
+          <b>HP Character:</b><br>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc_-7HOjwIvlkyGBktFLe0lBHENGqzO5o1rg&s" alt="Hermione" style="margin:3px 0; display:block; margin-left:auto; margin-right:auto; height: 100px; width: 100px;"><br>
+          <b style="color:#ff99ff;">Hermione Granger!!</b><br>
+          <i style="font-size:9px;">"Smart &amp; loyal!"</i><br><br>
+          <b>Which Band:</b><br>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Linkin_Park-Rock_im_Park_2014-_by_2eight_3SC0327.jpg" alt="LP" style="margin:3px 0; display:block; margin-left:auto; margin-right:auto;height: 100px; width: 100px"><br>
+          <b style="color:#ff99ff;">Linkin Park!!</b><br>
+          <i style="font-size:9px;">"U rock out loud!!"</i><br><br>
+          <b>Element:</b><br>
+          <b style="color:#ff99ff;">Water!!</b><br>
+          <i style="font-size:9px;">"Deep &amp; emotional"</i><br><br>
+          <b>Anime Type:</b><br>
+          <b style="color:#ff99ff;">Cool Genius!!</b><br>
+          <i style="font-size:9px;">"Mysterious lol"</i>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; BLINKIES &#9668;</div>
+        <div style="text-align:center; line-height:2;">
+          <img src="https://external-media.spacehey.net/media/sxfxt8ozYNZxRnbRCXo6EceJqefu9Z4eR9kETccOIWFI=/https://64.media.tumblr.com/02aafb8de5336865a1c6627c78eb3795/72e2590fb9e2f26c-37/s250x400/c49ae6229e7e68680543723f1b1fc1fca0e79ebc.gifv" alt="HP Fan"><br>
+          <img src="https://external-media.spacehey.net/media/sG8LtA5e8EoTj_c3ycmD3QFEQfxsgUOP--nXNwx6kTtY=/https://64.media.tumblr.com/5d138942ac75363bda574a2f039e4e9b/72e2590fb9e2f26c-51/s250x400/6ca394878fa61678e63758cb4ba0b1d2e23d3f64.gifv" alt="LP"><br>
+          <img src="https://external-media.spacehey.net/media/sJMw7gnXLJaV1XTuCh-B7YbrAqPH6RcmVn5ONAMGpM7I=/https://64.media.tumblr.com/6d12a2374206fe6e8fde0798e3e32894/b4a8996229d50d4f-94/s250x400/3acc1cd69506129cb3b230f1a2d5765969d5869c.gifv" alt="Anime"><br>
+          <img src="https://external-media.spacehey.net/media/sCFJV16q3RQUG0r_FMv1g4f4v1ALf9fmokjzdPq9DezY=/https://64.media.tumblr.com/e37ae14b2830448611ee6aeff95e9081/72e2590fb9e2f26c-e4/s250x400/df35141c404f3845ea7cc5c4c174e78b283124f1.webp" alt="Eco"><br>
+          <img src="https://external-media.spacehey.net/media/sKJhDrgmw2OW1m-YBI3BsuSxi8yz5cxljepK86k60sVQ=/https://64.media.tumblr.com/a1f97e46974400965ba58cf4eda4d584/72e2590fb9e2f26c-6a/s250x400/b8885434e1275144f85567404fd2f66debfcf77e.gifv" alt="Eva"><br>
+        </div>
+      </div>
+    </td>
+
+    <!-- MAIN CONTENT -->
+    <td id="content">
+
+      <div class="content-box">
+        <div class="box-title">&#9733; Welcome to my Quizzes page!! &#9733;</div>
+        <p style="font-size:11px; color:#cc99ff;">
+          OMG I luv quizzes SO much lol!! I made these myself (mostly) - some r based on ones I found on
+          <b style="color:#ff99ff;">Quizilla</b> but I edited them 2 make them better hehe. Take them all and
+          plz <b style="color:#ff99ff;">post ur results in my guestbook</b>!!
+          I wanna know which character everyone gets!! &hearts;
+        </p>
+        <p style="text-align:center; color:#ff0099; font-size:11px;">
+          <b>~*~ Click a banner below 2 pick ur quiz!! ~*~</b>
+        </p>
+      </div>
+
+      <!-- QUIZ GALLERY BANNER SECTION -->
+      <div class="content-box" id="quiz-gallery-section">
+        <div class="box-title">&#9733; Pick A Quiz!! &#9733;</div>
+        <p class="gallery-instruction">Click any banner 2 load that quiz below!!</p>
+        <table id="quiz-gallery-table" cellpadding="0" cellspacing="4" border="0">
+          <tr id="quiz-gallery">
+            <!-- filled by quiz.js -->
+          </tr>
+        </table>
+      </div>
+
+      <!-- DYNAMIC QUIZ AREA - quiz loads here when banner is clicked -->
+      <div class="content-box" style="padding:0;">
+        <div id="quiz-area">
+          <!-- quiz.js renders the active quiz here -->
+        </div>
+      </div>
+
+      <!-- Credits -->
+      <div class="content-box">
+        <div class="box-title">&#9733; Quiz Credits &#9733;</div>
+        <p style="font-size:10px; color:#996699; text-align:center;">
+          All quizzes made by <b style="color:#ff99ff;">xX_KillerJack69_Xx</b> (me lol) &copy; 2003<br>
+          Plz do NOT steal my quizzes!! If u want 2 use them ask me first!!<br>
+          <i>Results inspired by quizzes I found on Quizilla &amp; various HP fansites</i><br><br>
+          <a href="index.html">&#171; back 2 main page</a>
+        </p>
+      </div>
+
+    </td>
+
+    <!-- RIGHT SIDEBAR -->
+    <td id="sidebar-right">
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658;  <a href="friends.html">&#9829; Friends</a> &#9668;</div>
+        <a href="https://www.instagram.com/axl_sloan_420/">&#9829;axl_sloan</a><br>
+        <a href="https://www.instagram.com/zeeny_x3/">&#9829;zeeny_x3</a><br>
+        <a href="https://www.instagram.com/khad1ja__ig">&#9829; khad1ja__ig</a><br>
+        <a href="https://www.instagram.com/___wonder_of_you___/">&#9829; Banshee </a><br>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; TOP RESULTS &#9668;</div>
+        <p style="font-size:10px; color:#cc99ff;">
+          <b style="color:#ff99ff;">HP Character:</b><br>
+          1. Hermione - 38%<br>
+          2. Harry - 31%<br>
+          3. Ron - 20%<br>
+          4. Draco - 11%<br>
+          <br>
+          <b style="color:#ff99ff;">Which Band:</b><br>
+          1. Linkin Park - 42%<br>
+          2. Evanescence - 28%<br>
+          3. Simple Plan - 19%<br>
+          4. Green Day - 11%<br>
+          <br>
+          <b style="color:#ff99ff;">Element:</b><br>
+          1. Water - 34%<br>
+          2. Fire - 29%<br>
+          3. Air - 22%<br>
+          4. Earth - 15%<br>
+          <br>
+          <small style="color:#660066;">based on my friends results lol</small>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; ALL QUIZZES &#9668;</div>
+        <p style="font-size:10px; color:#cc99ff;">
+          &#187; <a href="#" onclick="loadQuiz('hp');return false;">Which HP Char?</a><br>
+          &#187; <a href="#" onclick="loadQuiz('band');return false;">Which Band?</a><br>
+          &#187; <a href="#" onclick="loadQuiz('lotr');return false;">Which LOTR Char?</a><br>
+          &#187; <a href="#" onclick="loadQuiz('element');return false;">Which Element?</a><br>
+          &#187; <a href="#" onclick="loadQuiz('emo');return false;">What % Emo?</a><br>
+          &#187; <a href="#" onclick="loadQuiz('anime');return false;">Which Anime Type?</a><br>
+          &#187; <a href="#" onclick="loadQuiz('punk');return false;">How Punk R U?</a><br>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; WEBRINGS &#9668;</div>
+        <p style="font-size:9px; text-align:center;">
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>HP Fansites Ring</b></a>
+          [<a href="#">next &raquo;</a>]<br><br>
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>Anime Lovers Ring</b></a>
+          [<a href="#">next &raquo;</a>]
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; BLINKIES &#9668;</div>
+        <div style="text-align:center; line-height:2;">
+          <img src="https://external-media.spacehey.net/media/sxfxt8ozYNZxRnbRCXo6EceJqefu9Z4eR9kETccOIWFI=/https://64.media.tumblr.com/02aafb8de5336865a1c6627c78eb3795/72e2590fb9e2f26c-37/s250x400/c49ae6229e7e68680543723f1b1fc1fca0e79ebc.gifv" alt="HP Fan"><br>
+          <img src="https://external-media.spacehey.net/media/sG8LtA5e8EoTj_c3ycmD3QFEQfxsgUOP--nXNwx6kTtY=/https://64.media.tumblr.com/5d138942ac75363bda574a2f039e4e9b/72e2590fb9e2f26c-51/s250x400/6ca394878fa61678e63758cb4ba0b1d2e23d3f64.gifv" alt="LP"><br>
+          <img src="https://external-media.spacehey.net/media/sJMw7gnXLJaV1XTuCh-B7YbrAqPH6RcmVn5ONAMGpM7I=/https://64.media.tumblr.com/6d12a2374206fe6e8fde0798e3e32894/b4a8996229d50d4f-94/s250x400/3acc1cd69506129cb3b230f1a2d5765969d5869c.gifv" alt="Anime"><br>
+        </div>
+      </div>
+
+    </td>
+
+  </tr>
+</table>
+
+<!-- FOOTER -->
+<div id="footer">
+  <p>
+    &copy; 2003 xX_KillerJack69_Xx's Website &mdash; All rights reserved! <br>
+    <small>Created With Passion, Dedication And Nostalgia</small><br><br>
+    <a href="index.html">Home</a> &bull; <a href="aboutme.html">About</a> &bull; <a href="myphotos.html">Photos</a> &bull;
+    <a href="poems.html">Poems</a> &bull; <a href="guestbook.php">Guestbook</a> &bull; <a href="contact.html">Contact</a>
+  </p>
+  <p>
+    <img src="https://media1.tenor.com/m/7XD9gEkumN8AAAAd/internet-explorer-free.gif" alt="IE6 button" style="width: 90px; height: 30px;">
+    <img src="https://preview.redd.it/winamp-logo-v0-mmhrs1evq1qa1.jpg?auto=webp&s=59563ce9d5d3c515d2c27d04d1f03e7df0265a08" alt="Winamp button" style="width: 90px; height: 30px;">
+    <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Made w Notepad" style="width: 90px; height: 30px;">
+    <img src="https://euroring.neocities.org/images/euroring88x31.png" alt="Go Green" style="width: 90px; height: 30px;">
+  </p>
+</div>
+
+<script src="quiz.js"></script>
+</body>
+</html>

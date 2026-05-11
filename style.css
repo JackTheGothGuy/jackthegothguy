@@ -1,0 +1,365 @@
+/* =============================================
+   ~*~ Jack's Vault - style.css ~*~
+   Made by xX_C00lGirl_Xx - DO NOT STEAL!!!
+   ============================================= */
+
+/* --- BODY & PAGE --- */
+body {
+  background-color: #9900cc;
+  background-image: url("https://i.pinimg.com/originals/8c/9a/10/8c9a1093ef7e4b59aa916a7f07f0e101.gif");
+  color: #ffff00;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+
+
+  background-size: cover;        
+  background-position: center;    /* Centers the image */
+  background-repeat: no-repeat;   /* Prevents tiling */
+  background-attachment: fixed;   /* Keeps image static while scrolling */
+  min-height: 100vh;              
+                   
+
+}
+
+/* --- LINKS --- */
+a {
+  color: #ffcc00;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #ff00ff;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #ff99ff;
+}
+
+/* --- MARQUEE BANNER --- */
+marquee {
+  background-color: #000000;
+  color: #00ff00;
+  font-size: 11px;
+  font-family: "Courier New", Courier, monospace;
+  padding: 3px 0;
+  border-bottom: 2px solid #00ff00;
+}
+
+/* --- MAIN TITLE --- */
+#title {
+  background-color: #330066;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 3px ridge #ff00ff;
+  border-top: 3px ridge #ff00ff;
+}
+
+#title h1 {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 26px;
+  color: #ff99ff;
+  margin: 5px 0;
+  text-shadow: 2px 2px #000000;
+}
+
+#subtitle {
+  font-size: 11px;
+  color: #00ffff;
+  margin: 4px 0;
+}
+
+/* --- MAIN LAYOUT TABLE --- */
+#main-table {
+  width: 95%;
+  margin: 8px auto;
+}
+
+/* --- SIDEBARS --- */
+#sidebar-left,
+#sidebar-right {
+  width: 160px;
+  vertical-align: top;
+}
+
+/* --- MAIN CONTENT AREA --- */
+#content {
+  vertical-align: top;
+  padding: 0 6px;
+}
+
+/* --- BOXES (sidebar + content) --- */
+.sidebar-box,
+.content-box {
+  background-color: #1a0033;
+  border: 2px ridge #cc00cc;
+  margin-bottom: 8px;
+  padding: 6px;
+}
+
+.box-title {
+  background-color: #660099;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 11px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  padding: 3px;
+  margin: -6px -6px 6px -6px;
+  border-bottom: 1px solid #ff00ff;
+}
+
+/* --- NEWS TABLE --- */
+.news-table {
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.news-table tr {
+  border-bottom: 1px dotted #660099;
+}
+
+.news-table td {
+  padding: 4px 3px;
+  vertical-align: top;
+}
+
+.news-date {
+  color: #ff66ff;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 60px;
+}
+
+/* --- FOOTER --- */
+#footer {
+  background-color: #000000;
+  border-top: 3px ridge #ff00ff;
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+  color: #cc99ff;
+}
+
+#footer a {
+  color: #ff99ff;
+  font-size: 10px;
+}
+
+/* --- HEADINGS --- */
+h2, h3 {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #ff99ff;
+  margin: 4px 0;
+}
+
+/* --- PARAGRAPHS --- */
+p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+/* --- HORIZONTAL RULE --- */
+hr {
+  border: 0;
+  border-top: 1px dashed #ff00ff;
+  margin: 6px 0;
+}
+
+/* --- BLINK TAG SIMULATION (for browsers that removed it) --- */
+blink {
+  animation: blink-animation 1s step-start infinite;
+}
+
+@keyframes blink-animation {
+  50% { visibility: hidden; }
+}
+
+/* --- IMAGES --- */
+img {
+  border: 1px solid #660099;
+}
+
+/* --- FRIEND CARDS --- */
+.friend-card {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 14px;
+  background-color: #1a0022;
+  border: 1px solid #ff00ff;
+}
+.friend-card td {
+  vertical-align: top;
+  padding: 8px;
+}
+.friend-avatar-cell {
+  width: 120px;
+}
+.friend-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border: 1px solid #ff99ff;
+  background-color: #330066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.friend-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.friend-info-cell {
+  padding-left: 10px;
+  color: #ffffcc;
+}
+.friend-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ff99ff;
+  margin-bottom: 4px;
+}
+.friend-meta {
+  font-size: 11px;
+  color: #cc99ff;
+  margin-bottom: 6px;
+}
+.friend-desc {
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.friend-tags {
+  margin-bottom: 8px;
+}
+.friend-tags .tag {
+  display: inline-block;
+  background-color: #330066;
+  border: 1px solid #660099;
+  color: #ffccff;
+  padding: 2px 6px;
+  margin: 0 4px 4px 0;
+  font-size: 11px;
+}
+.friend-links a {
+  color: #ffcc00;
+}
+.friend-status {
+  font-size: 11px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+.friend-status.online { color: #7dff7d; }
+.friend-status.away { color: #ffcc66; }
+.friend-status.offline { color: #ff6666; }
+.friend-divider {
+  border-top: 1px dashed #660099;
+  margin: 12px 0;
+}
+
+
+    /* poll-specific styles */
+    .poll-question {
+      font-size: 13px;
+      font-weight: bold;
+      color: #ff99ff;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .poll-option-row {
+      margin: 5px 0;
+      font-size: 11px;
+    }
+    .poll-option-row input[type="radio"] {
+      accent-color: #cc00cc;
+      cursor: pointer;
+    }
+    .poll-option-row label {
+      color: #ddaaff;
+      cursor: pointer;
+    }
+    .poll-bar-wrap {
+      background: #110022;
+      border: 1px solid #660099;
+      height: 10px;
+      width: 100%;
+      margin: 2px 0 4px 0;
+      display: none;
+    }
+    .poll-bar-fill {
+      background: #cc00cc;
+      height: 100%;
+    }
+    .poll-bar-label {
+      color: #996699;
+      font-size: 10px;
+      display: none;
+    }
+    .poll-submit-btn {
+      background: #330066;
+      border: 1px solid #cc00cc;
+      color: #ff99ff;
+      cursor: pointer;
+      font-family: Verdana, Arial, sans-serif;
+      font-size: 11px;
+      padding: 3px 12px;
+      margin-top: 8px;
+    }
+    .poll-submit-btn:hover {
+      background: #660099;
+    }
+    .poll-voted-msg {
+      color: #ff99ff;
+      font-size: 11px;
+      font-style: italic;
+      text-align: center;
+      margin-top: 6px;
+      display: none;
+    }
+    .poll-day-label {
+      font-size: 10px;
+      color: #996699;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .poll-total {
+      font-size: 10px;
+      color: #996699;
+      text-align: center;
+      margin-top: 6px;
+    }
+    .poll-archive-title {
+      font-size: 11px;
+      font-weight: bold;
+      color: #cc99ff;
+      margin-bottom: 6px;
+    }
+    .poll-archive-item {
+      font-size: 10px;
+      color: #996699;
+      margin: 3px 0;
+      border-bottom: 1px dotted #330066;
+      padding-bottom: 3px;
+    }
+    .poll-archive-item a {
+      color: #cc99ff;
+    }
+    .poll-archive-winner {
+      color: #ff99ff;
+      font-style: italic;
+    }
+    #poll-expired-note {
+      color: #ff6699;
+      font-size: 10px;
+      font-style: italic;
+      text-align: center;
+      margin-top: 4px;
+    }
+  

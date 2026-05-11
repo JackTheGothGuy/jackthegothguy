@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="daily poll, vote, jack's vault, 2003">
+  <meta name="description" content="Jack's Vault - Daily Poll">
+  <title>~*~ Jack's Vault ~*~ Daily Poll ~*~</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+ 
+</head>
+<body>
+
+<!-- MARQUEE HEADER -->
+<marquee behavior="scroll" direction="left" scrollamount="4">
+  &hearts; WELCOME TO MY SITE &hearts; &nbsp;&nbsp;&nbsp; YOU ARE VISITOR #001337 &nbsp;&nbsp;&nbsp;
+  BEST VIEWED IN INTERNET EXPLORER 6.0 AT 800x600 &nbsp;&nbsp;&nbsp; &hearts; WELCOME TO MY SITE &hearts;
+</marquee>
+
+<!-- MAIN TITLE -->
+<div id="title">
+  <h1>~*~ Jack's Vault ~*~</h1>
+  <p id="subtitle">
+    <blink>*** UNDER CONSTRUCTION ***</blink>
+    &nbsp;&nbsp; Last Updated: today
+  </p>
+</div>
+
+<!-- LAYOUT TABLE -->
+<table id="main-table" cellpadding="5" cellspacing="2" border="0">
+  <tr>
+
+    <!-- LEFT SIDEBAR -->
+    <td id="sidebar-left">
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; NAVIGATION &#9668;</div>
+        <a href="index.html">&#187; Home</a><br>
+        <a href="aboutme.html">&#187; About Me</a><br>
+        <a href="myphotos.html">&#187; My Photos</a><br>
+        <a href="poems.html">&#187; My Poems</a><br>
+        <a href="covers.php">&#187; Covers</a><br>
+        <a href="daily.html">&#187; Daily Poll</a><br>
+        <a href="friends.html">&#187; Friends</a><br>
+        <a href="quiz.html">&#187; Quizzes</a><br>
+        <a href="guestbook.php">&#187; Guestbook</a><br>
+        <a href="portfolio.html">&#187; Portfolio</a><br>
+        <a href="contact.html">&#187; Contact</a><br>
+      </div>
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; ONLINE STATUS &#9668;</div>
+        &nbsp;xX_KillerJack69_Xx<br>
+        <small><i>AIM: xX_KillerJack69_Xx</i></small><br>
+        <small><i>MSN: jackrogers@hotmail.com</i></small>
+      </div>
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; QUIZ RESULT &#9668;</div>
+        <p style="font-size:10px; text-align:center;">
+          <b>Which Hogwarts House R U?</b><br><br>
+          <img src="https://sw6.elbenwald.de/media/bf/09/77/1670024351/E1073984_2.jpg" alt="Gryffindor" style="width: 80px;"><br>
+          <b>GRYFFINDOR!</b><br>
+          <i>"You are brave and loyal!"</i><br><br>
+          <a href="quiz.html">Take the quiz!</a>
+        </p>
+      </div>
+    </td>
+
+    <!-- MAIN CONTENT -->
+    <td id="content">
+
+      <div class="content-box">
+        <div class="box-title">&#9733; Daily Poll &#9733;</div>
+        <p style="font-size:11px; color:#ddaaff; text-align:center;">
+          A brand new poll every single day!! Vote and see what everyone thinks!!<br>
+          <small style="color:#996699;">Poll resets at midnight. Come back tomorrow for a new one!!</small>
+        </p>
+
+        <!-- TODAY'S POLL -->
+        <div class="content-box" style="margin-top:8px;">
+          <div class="box-title">&#9733; Today's Poll &#9733;</div>
+
+          <div class="poll-day-label" id="poll-day-label"></div>
+          <div class="poll-question" id="poll-question">Loading poll...</div>
+
+          <div id="poll-options-wrap"></div>
+
+          <div style="text-align:center;">
+            <button class="poll-submit-btn" id="poll-submit-btn" onclick="submitVote()">&#9658; VOTE!</button>
+          </div>
+          <div class="poll-voted-msg" id="poll-voted-msg">&#10003; Thanks 4 voting!! Results below!!</div>
+          <div id="poll-expired-note"></div>
+          <div class="poll-total" id="poll-total"></div>
+        </div>
+
+        <!-- POLL RULES -->
+        <p style="font-size:10px; color:#996699; text-align:center; margin-top:6px;">
+          ~*~ One vote per person per day!! ~*~<br>
+          <i>Votes r stored in ur browser so no cheating lol!!</i>
+        </p>
+      </div>
+
+      <!-- POLL ARCHIVE -->
+      <div class="content-box">
+        <div class="box-title">&#9733; Poll Archive &#9733;</div>
+        <div class="poll-archive-title">Previous polls &amp; winners:</div>
+        <div id="poll-archive"></div>
+      </div>
+
+    </td>
+
+    <!-- RIGHT SIDEBAR -->
+    <td id="sidebar-right">
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; BLINKIES &#9668;</div>
+        <div style="text-align:center; line-height:2;">
+          <img src="https://external-media.spacehey.net/media/sxfxt8ozYNZxRnbRCXo6EceJqefu9Z4eR9kETccOIWFI=/https://64.media.tumblr.com/02aafb8de5336865a1c6627c78eb3795/72e2590fb9e2f26c-37/s250x400/c49ae6229e7e68680543723f1b1fc1fca0e79ebc.gifv" alt="HP Fan"><br>
+          <img src="https://external-media.spacehey.net/media/sG8LtA5e8EoTj_c3ycmD3QFEQfxsgUOP--nXNwx6kTtY=/https://64.media.tumblr.com/5d138942ac75363bda574a2f039e4e9b/72e2590fb9e2f26c-51/s250x400/6ca394878fa61678e63758cb4ba0b1d2e23d3f64.gifv" alt="LP"><br>
+          <img src="https://external-media.spacehey.net/media/sJMw7gnXLJaV1XTuCh-B7YbrAqPH6RcmVn5ONAMGpM7I=/https://64.media.tumblr.com/6d12a2374206fe6e8fde0798e3e32894/b4a8996229d50d4f-94/s250x400/3acc1cd69506129cb3b230f1a2d5765969d5869c.gifv" alt="Anime"><br>
+          <img src="https://external-media.spacehey.net/media/sCFJV16q3RQUG0r_FMv1g4f4v1ALf9fmokjzdPq9DezY=/https://64.media.tumblr.com/e37ae14b2830448611ee6aeff95e9081/72e2590fb9e2f26c-e4/s250x400/df35141c404f3845ea7cc5c4c174e78b283124f1.webp" alt="Eco"><br>
+          <img src="https://external-media.spacehey.net/media/sKJhDrgmw2OW1m-YBI3BsuSxi8yz5cxljepK86k60sVQ=/https://64.media.tumblr.com/a1f97e46974400965ba58cf4eda4d584/72e2590fb9e2f26c-6a/s250x400/b8885434e1275144f85567404fd2f66debfcf77e.gifv" alt="Eva"><br>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658;  <a href="friends.html">&#9829; Friends</a> &#9668;</div>
+        <a href="https://www.instagram.com/axl_sloan_420/">&#9829;axl_sloan</a><br>
+        <a href="https://www.instagram.com/zeeny_x3/">&#9829;zeeny_x3</a><br>
+        <a href="https://www.instagram.com/khad1ja__ig">&#9829; khad1ja__ig</a><br>
+        <a href="https://www.instagram.com/___wonder_of_you___/">&#9829; Banshee </a><br>
+      </div>
+
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; STATS &#9668;</div>
+        <p style="font-size:10px;">
+          <b>All-time votes:</b><br>
+          <span id="sidebar-total-votes" style="color:#ff99ff;">0</span> total votes cast!!<br><br>
+          <b>Most popular answer ever:</b><br>
+          <span id="sidebar-top-answer" style="color:#ff99ff; font-style:italic;"></span>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; WEBRINGS &#9668;</div>
+        <p style="font-size:9px; text-align:center;">
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>HP Fansites Ring</b></a>
+          [<a href="#">next &raquo;</a>]<br><br>
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>Anime Lovers Ring</b></a>
+          [<a href="#">next &raquo;</a>]
+        </p>
+      </div>
+
+    </td>
+
+  </tr>
+</table>
+
+<!-- FOOTER -->
+<div id="footer">
+  <p>
+    &copy; 2003 xX_KillerJack69_Xx's Website &mdash; All rights reserved! <br>
+    <small>Created With Passion, Dedication And Nostalgia</small><br><br>
+    <a href="index.html">Home</a> &bull; <a href="aboutme.html">About</a> &bull; <a href="myphotos.html">Photos</a> &bull;
+    <a href="poems.html">Poems</a> &bull; <a href="guestbook.php">Guestbook</a> &bull; <a href="contact.html">Contact</a>
+  </p>
+  <p>
+    <img src="https://media1.tenor.com/m/7XD9gEkumN8AAAAd/internet-explorer-free.gif" alt="IE6 button" style="width: 90px; height: 30px;">
+    <img src="https://preview.redd.it/winamp-logo-v0-mmhrs1evq1qa1.jpg?auto=webp&s=59563ce9d5d3c515d2c27d04d1f03e7df0265a08" alt="Winamp button" style="width: 90px; height: 30px;">
+    <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Made w Notepad" style="width: 90px; height: 30px;">
+    <img src="https://euroring.neocities.org/images/euroring88x31.png" alt="Go Green" style="width: 90px; height: 30px;">
+  </p>
+</div>
+
+<script src="daily.js"></script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="photos, gallery, 3d models, nature, band photos, drawings, sketches">
+  <meta name="description" content="My Photos page - all my pics by category!!">
+  <title>~*~ My Photos ~*~ xX_KillerJack69_Xx's Website ~*~</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    /* =============================================
+       PHOTO PAGE SPECIFIC STYLES
+    ============================================= */
+
+    /* Category tab bar */
+    .cat-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 8px;
+      padding: 0;
+    }
+    .cat-tab {
+      background: #1a001a;
+      border: 1px solid #660099;
+      color: #cc99ff;
+      font-family: Verdana, Arial, sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 3px 8px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cat-tab:hover, .cat-tab.active {
+      background: #660099;
+      color: #ffffff;
+      border-color: #ff00ff;
+    }
+    .cat-tab .tab-count {
+      color: #ff99ff;
+      font-size: 9px;
+      margin-left: 3px;
+    }
+
+    /* Category section */
+    .photo-section {
+      display: none;
+    }
+    .photo-section.visible {
+      display: block;
+    }
+    .photo-section-header {
+      font-size: 11px;
+      color: #cc99ff;
+      font-style: italic;
+      margin-bottom: 8px;
+      padding: 4px 6px;
+      background: #0d000d;
+      border-left: 3px solid #cc00cc;
+    }
+
+    /* Photo grid */
+    .photo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* Individual photo tile */
+    .photo-tile {
+      background: #0d000d;
+      border: 1px solid #440044;
+      padding: 3px;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.1s;
+      flex-shrink: 0;
+    }
+    .photo-tile:hover {
+      border-color: #ff00ff;
+    }
+    .photo-tile:hover .photo-overlay {
+      opacity: 1;
+    }
+    .photo-tile img {
+      display: block;
+    }
+    .photo-overlay {
+      position: absolute;
+      bottom: 3px;
+      left: 3px;
+      right: 3px;
+      background: rgba(60,0,60,0.85);
+      color: #ff99ff;
+      font-size: 9px;
+      text-align: center;
+      padding: 2px 3px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      pointer-events: none;
+    }
+    .photo-caption {
+      font-size: 9px;
+      color: #996699;
+      text-align: center;
+      margin-top: 2px;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #lightbox.open {
+      display: flex;
+    }
+    #lb-inner {
+      background: #1a001a;
+      border: 2px solid #cc00cc;
+      padding: 10px;
+      max-width: 92vw;
+      text-align: center;
+      position: relative;
+    }
+    #lb-img {
+      max-width: 80vw;
+      max-height: 70vh;
+      display: block;
+      margin: 0 auto;
+    }
+    #lb-caption {
+      color: #ff99ff;
+      font-size: 11px;
+      margin-top: 6px;
+      font-style: italic;
+    }
+    #lb-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      gap: 10px;
+    }
+    #lb-nav button {
+      background: #330066;
+      border: 1px solid #cc00cc;
+      color: #ff99ff;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 3px 10px;
+      font-family: Verdana, Arial, sans-serif;
+    }
+    #lb-nav button:hover { background: #660099; }
+    #lb-close {
+      position: absolute;
+      top: 4px; right: 6px;
+      background: none;
+      border: none;
+      color: #ff0099;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: Verdana, Arial, sans-serif;
+      font-weight: bold;
+    }
+    #lb-close:hover { color: #ff99ff; }
+    #lb-counter {
+      font-size: 9px;
+      color: #996699;
+    }
+
+    .star-divider {
+      text-align: center;
+      color: #660099;
+      font-size: 10px;
+      margin: 6px 0;
+    }
+
+    /* upload note box */
+    .upload-note {
+      font-size: 10px;
+      color: #996699;
+      font-style: italic;
+      text-align: center;
+      padding: 10px;
+      border: 1px dashed #440044;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MARQUEE HEADER -->
+<marquee behavior="scroll" direction="left" scrollamount="4">
+  &hearts; MY PHOTOS PAGE &hearts; &nbsp;&nbsp;&nbsp; 3D MODELS &bull; NATURE &bull; BAND PHOTOS &bull; DRAWINGS &bull; ME &bull; MISC &nbsp;&nbsp;&nbsp;
+  PLZ DONT STEAL MY PHOTOS!! &nbsp;&nbsp;&nbsp; &hearts; LEAVE A COMMENT IN MY GUESTBOOK &hearts;
+</marquee>
+
+<!-- MAIN TITLE -->
+<div id="title">
+  <h1>~*~ My Photos!! ~*~</h1>
+  <p id="subtitle">
+    <blink>*** ALL MY PICS IN 1 PLACE!! ***</blink>
+    &nbsp;&nbsp; Last Updated: today
+  </p>
+</div>
+
+<!-- LAYOUT TABLE -->
+<table id="main-table" cellpadding="5" cellspacing="2" border="0">
+  <tr>
+
+    <!-- LEFT SIDEBAR -->
+    <td id="sidebar-left">
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; NAVIGATION &#9668;</div>
+        <a href="index.html">&#187; Home</a><br>
+        <a href="aboutme.html">&#187; About Me</a><br>
+        <a href="myphotos.html">&#187; My Photos</a><br>
+        <a href="poems.html">&#187; My Poems</a><br>
+        <a href="covers.php">&#187; Covers</a><br>
+        <a href="daily.html">&#187; Daily Poll</a><br>
+        <a href="friends.html">&#187; Friends</a><br>
+        <a href="quiz.html">&#187; Quizzes</a><br>
+        <a href="guestbook.php">&#187; Guestbook</a><br>
+        <a href="portfolio.html">&#187; Portfolio</a><br>
+        <a href="contact.html">&#187; Contact</a><br>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; PHOTO STATS &#9668;</div>
+        <p style="font-size:10px; color:#cc99ff;">
+          <b style="color:#ff99ff;">Total pics:</b> 30<br>
+          <b style="color:#ff99ff;">3D Models:</b> 5<br>
+          <b style="color:#ff99ff;">Nature:</b> 5<br>
+          <b style="color:#ff99ff;">Band Photos:</b> 5<br>
+          <b style="color:#ff99ff;">Drawings:</b> 5<br>
+          <b style="color:#ff99ff;">Me:</b> 5<br>
+          <b style="color:#ff99ff;">Misc:</b> 5<br>
+          <br>
+          <span style="color:#ff0099; font-size:9px;">more pics coming soon!!</span>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; ONLINE STATUS &#9668;</div>
+        <img src="https://kuribo64.net/board/img/smilies/biggrin.gif" alt="online"> &nbsp;xX_KillerJack69_Xx<br>
+        <small><i>AIM: xX_KillerJack69_Xx</i></small><br>
+        <small><i>MSN: jackrogers@hotmail.com</i></small>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; QUICK JUMP &#9668;</div>
+        <p style="font-size:10px;">
+          <a href="#" onclick="showCat('3d'); return false;">&#187; 3D Models</a><br>
+          <a href="#" onclick="showCat('nature'); return false;">&#187; Nature</a><br>
+          <a href="#" onclick="showCat('music'); return false;">&#187; Band Photos</a><br>
+          <a href="#" onclick="showCat('drawings'); return false;">&#187; Drawings</a><br>
+          <a href="#" onclick="showCat('me'); return false;">&#187; Me!!</a><br>
+          <a href="#" onclick="showCat('misc'); return false;">&#187; Misc</a><br>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; BLINKIES &#9668;</div>
+        <div style="text-align:center; line-height:2;">
+          <img src="https://external-media.spacehey.net/media/sxfxt8ozYNZxRnbRCXo6EceJqefu9Z4eR9kETccOIWFI=/https://64.media.tumblr.com/02aafb8de5336865a1c6627c78eb3795/72e2590fb9e2f26c-37/s250x400/c49ae6229e7e68680543723f1b1fc1fca0e79ebc.gifv" alt="HP Fan"><br>
+          <img src="https://external-media.spacehey.net/media/sG8LtA5e8EoTj_c3ycmD3QFEQfxsgUOP--nXNwx6kTtY=/https://64.media.tumblr.com/5d138942ac75363bda574a2f039e4e9b/72e2590fb9e2f26c-51/s250x400/6ca394878fa61678e63758cb4ba0b1d2e23d3f64.gifv" alt="LP"><br>
+          <img src="https://external-media.spacehey.net/media/sJMw7gnXLJaV1XTuCh-B7YbrAqPH6RcmVn5ONAMGpM7I=/https://64.media.tumblr.com/6d12a2374206fe6e8fde0798e3e32894/b4a8996229d50d4f-94/s250x400/3acc1cd69506129cb3b230f1a2d5765969d5869c.gifv" alt="Anime"><br>
+          <img src="https://external-media.spacehey.net/media/sCFJV16q3RQUG0r_FMv1g4f4v1ALf9fmokjzdPq9DezY=/https://64.media.tumblr.com/e37ae14b2830448611ee6aeff95e9081/72e2590fb9e2f26c-e4/s250x400/df35141c404f3845ea7cc5c4c174e78b283124f1.webp" alt="Eco"><br>
+          <img src="https://external-media.spacehey.net/media/sKJhDrgmw2OW1m-YBI3BsuSxi8yz5cxljepK86k60sVQ=/https://64.media.tumblr.com/a1f97e46974400965ba58cf4eda4d584/72e2590fb9e2f26c-6a/s250x400/b8885434e1275144f85567404fd2f66debfcf77e.gifv" alt="Eva"><br>
+        </div>
+      </div>
+    </td>
+
+    <!-- MAIN CONTENT -->
+    <td id="content">
+
+      <div class="content-box">
+        <div class="box-title">&#9733; My Photos!! &#9733;</div>
+        <p style="font-size:11px; color:#cc99ff;">
+          OMG hi!! ok so I finally got all my pics organized into categories lol it took forever!!
+          Click a category tab below 2 see those pics. Click any pic 2 see it bigger!!
+          <b style="color:#ff99ff;">Plz do NOT steal my photos or art without asking!!</b>
+          &copy; 2003 xX_KillerJack69_Xx &hearts;
+        </p>
+        <p style="text-align:center; color:#ff0099; font-size:10px;">
+          <b>~*~ all 3D models made in blender ~*~ drawings r by me ~*~ photography r by me too!! ~*~</b>
+        </p>
+      </div>
+
+      <!-- CATEGORY TAB BAR -->
+      <div class="content-box">
+        <div class="box-title">&#9733; Categories &#9733;</div>
+        <div class="cat-tabs">
+          <span class="cat-tab active" id="tab-3d"       onclick="showCat('3d')"      >&#9660; 3D Models      <span class="tab-count">(5)</span></span>
+          <span class="cat-tab"        id="tab-nature"   onclick="showCat('nature')"  >&#9660; Nature         <span class="tab-count">(5)</span></span>
+          <span class="cat-tab"        id="tab-music"    onclick="showCat('music')"   >&#9660; Music Photos    <span class="tab-count">(5)</span></span>
+          <span class="cat-tab"        id="tab-drawings" onclick="showCat('drawings')">&#9660; Drawings &amp; Sketches <span class="tab-count">(5)</span></span>
+          <span class="cat-tab"        id="tab-me"       onclick="showCat('me')"      >&#9660; Me!!           <span class="tab-count">(5)</span></span>
+          <span class="cat-tab"        id="tab-misc"     onclick="showCat('misc')"    >&#9660; Misc           <span class="tab-count">(5)</span></span>
+        </div>
+
+        <!-- ===================== 3D MODELS ===================== -->
+        <div class="photo-section visible" id="sec-3d">
+          <div class="photo-section-header">
+            &#9733; 3D Models I taught myself everything from observing people lol &hearts;
+          </div>
+          <div class="photo-grid" id="grid-3d"></div>
+          <div class="upload-note">&#9658; All My 3D Renders &#9668;</div>
+        </div>
+
+        <!-- ===================== NATURE ===================== -->
+        <div class="photo-section" id="sec-nature">
+          <div class="photo-section-header">
+            &#9733; Nature Photography - I took all these with my dads Olympus camera!! Nature is so beautiful omg &hearts;
+          </div>
+          <div class="photo-grid" id="grid-nature"></div>
+          <div class="upload-note">&#9658; All My Nature Photos &#9668;</div>
+        </div>
+
+        <!-- ===================== MUSIC PHOTOS ===================== -->
+        <!-- FIX: was id="sec-band" — renamed to id="sec-music" to match showCat('music') -->
+        <div class="photo-section" id="sec-music">
+          <div class="photo-section-header">
+            &#9733; Band Photos - pics from concerts &hearts;
+          </div>
+          <div class="photo-grid" id="grid-music"></div>
+          <div class="upload-note">&#9658; All My Band Photos &#9668;</div>
+        </div>
+
+        <!-- ===================== DRAWINGS ===================== -->
+        <div class="photo-section" id="sec-drawings">
+          <div class="photo-section-header">
+            &#9733; Drawings &amp; Sketches - all hand drawn by me!! plz dont steal my art omg &copy; 2003 &hearts;
+          </div>
+          <div class="photo-grid" id="grid-drawings"></div>
+          <div class="upload-note">&#9658; All My Drawings &amp; Sketches &#9668;</div>
+        </div>
+
+        <!-- ===================== ME ===================== -->
+        <div class="photo-section" id="sec-me">
+          <div class="photo-section-header">
+            &#9733; Me!! - yes I know I look weird in some of these lol. taken w/ my webcam mostly &hearts;
+          </div>
+          <div class="photo-grid" id="grid-me"></div>
+          <div class="upload-note">&#9658; my pics omg &#9668;</div>
+        </div>
+
+        <!-- ===================== MISC ===================== -->
+        <div class="photo-section" id="sec-misc">
+          <div class="photo-section-header">
+            &#9733; Misc - random stuff that doesnt fit anywhere else lol. stuff from the mall, my room, etc &hearts;
+          </div>
+          <div class="photo-grid" id="grid-misc"></div>
+          <div class="upload-note">&#9658; randoms!!!! lul &#9668;</div>
+        </div>
+
+      </div><!-- end content-box -->
+
+      <div class="content-box">
+        <div class="box-title">&#9733; Notes &amp; Credits &#9733;</div>
+        <p style="font-size:10px; color:#996699; text-align:center;">
+          All original artwork &amp; photography &copy; 2003 <b style="color:#ff99ff;">xX_KillerJack69_Xx</b>. DO NOT steal!!<br>
+          3D software: <i>Blender 4.1</i> &amp; <i>Sketchup</i> &mdash; photography with <i>Samsung Phone Oldroll</i><br>
+          Drawings scanned w/ <i>HP ScanJet 3500c</i><br><br>
+          <a href="index.html">&#171; back 2 main page</a>
+        </p>
+      </div>
+
+    </td>
+
+    <!-- RIGHT SIDEBAR -->
+    <td id="sidebar-right">
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658;  <a href="friends.html">&#9829; Friends</a> &#9668;</div>
+        <a href="https://www.instagram.com/axl_sloan_420/">&#9829;axl_sloan</a><br>
+        <a href="https://www.instagram.com/zeeny_x3/">&#9829;zeeny_x3</a><br>
+        <a href="https://www.instagram.com/khad1ja__ig">&#9829; khad1ja__ig</a><br>
+        <a href="https://www.instagram.com/___wonder_of_you___/">&#9829; Banshee </a><br>
+      </div>
+
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; LATEST PICS &#9668;</div>
+        <p style="font-size:10px; color:#cc99ff; text-align:center;">
+          <b style="color:#ff99ff;">Just added:</b><br><br>
+          <img src="https://placehold.co/80x60/1a001a/cc99ff?text=new+photo" alt="new" style="display:block; margin:0 auto 3px;"><br>
+          <i style="font-size:9px;">"Jennifer's bday party lol"</i><br>
+          <small style="color:#666666;">added 04/23/03</small><br><br>
+          <img src="https://placehold.co/80x60/001a00/99ff99?text=nature+pic" alt="nature" style="display:block; margin:0 auto 3px;"><br>
+          <i style="font-size:9px;">"park near my house"</i><br>
+          <small style="color:#666666;">added 04/19/03</small>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; POLL &#9668;</div>
+        <p style="font-size:10px;">
+          <b>Whats ur Favourite section?</b><br><br>
+          &bull; <a href="#">3D Models</a> - 34%<br>
+          &bull; <a href="#">Drawings</a> - 29%<br>
+          &bull; <a href="#">Nature</a> - 18%<br>
+          &bull; <a href="#">Band Photos</a> - 12%<br>
+          &bull; <a href="#">Me / Misc</a> - 7%<br><br>
+          <small>41 votes!</small><br>
+          <a href="#"><b>[VOTE NOW]</b></a>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; WEBRINGS &#9668;</div>
+        <p style="font-size:9px; text-align:center;">
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>Digital Artists Ring</b></a>
+          [<a href="#">next &raquo;</a>]<br><br>
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>Bryce Artists Ring</b></a>
+          [<a href="#">next &raquo;</a>]
+        </p>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+<!-- FOOTER -->
+<div id="footer">
+  <p>
+    &copy; 2003 xX_KillerJack69_Xx's Website &mdash; All rights reserved! <br>
+    <small>Created With Passion, Dedication And Nostalgia</small><br><br>
+    <a href="index.html">Home</a> &bull; <a href="aboutme.html">About</a> &bull; <a href="myphotos.html">Photos</a> &bull;
+    <a href="poems.html">Poems</a> &bull; <a href="guestbook.php">Guestbook</a> &bull; <a href="contact.html">Contact</a>
+  </p>
+  <p>
+    <img src="https://media1.tenor.com/m/7XD9gEkumN8AAAAd/internet-explorer-free.gif" alt="IE6 button" style="width: 90px; height: 30px;">
+    <img src="https://preview.redd.it/winamp-logo-v0-mmhrs1evq1qa1.jpg?auto=webp&s=59563ce9d5d3c515d2c27d04d1f03e7df0265a08" alt="Winamp button" style="width: 90px; height: 30px;">
+    <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Made w Notepad" style="width: 90px; height: 30px;">
+    <img src="https://euroring.neocities.org/images/euroring88x31.png" alt="Go Green" style="width: 90px; height: 30px;">
+  </p>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLB(event)">
+  <div id="lb-inner">
+    <button id="lb-close" onclick="closeLightbox()">&#10005; close</button>
+    <img id="lb-img" src="" alt="">
+    <div id="lb-caption"></div>
+    <div id="lb-nav">
+      <button onclick="lbStep(-1)">&#9664;&#9664; prev</button>
+      <span id="lb-counter"></span>
+      <button onclick="lbStep(1)">next &#9654;&#9654;</button>
+    </div>
+  </div>
+</div>
+
+<!-- JS moved to external file -->
+<script src="photos.js"></script>
+
+</body>
+</html>

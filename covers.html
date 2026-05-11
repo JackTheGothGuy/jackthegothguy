@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="covers, music, jack's vault, videos">
+  <meta name="description" content="Jack's Vault - Covers Page">
+  <title>~*~ Jack's Vault - Covers ~*~</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style type="text/css">
+    /* covers.php specific styles - new elements only */
+    .video-container { border: 1px solid #660099; background: #000; padding: 4px; margin-bottom: 4px; }
+    .video-screen { background: #0a000a; min-height: 320px; display: flex; align-items: center; justify-content: center; border: 1px inset #330033; }
+    .video-placeholder { text-align: center; color: #cc99ff; font-size: 11px; font-family: Verdana, sans-serif; padding: 20px; }
+    .video-placeholder p { color: #ff99ff; font-size: 13px; margin: 0 0 4px 0; }
+    .video-controls { background: #1a001a; border-top: 1px solid #440044; padding: 4px; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .vid-btn { background: #330066; border: 1px solid #cc00cc; color: #ff99ff; cursor: pointer; font-size: 10px; padding: 2px 6px; font-family: Verdana, sans-serif; }
+    .vid-btn:hover { background: #550088; color: #ffffff; }
+    .comment-section { border-top: 1px dashed #660066; margin-top: 8px; padding-top: 6px; }
+    .comments-list { background: #0d000d; border: 1px inset #440044; padding: 5px; margin-bottom: 6px; max-height: 200px; overflow-y: auto; }
+    .comment-entry { border-bottom: 1px dotted #440044; padding: 4px 2px; font-size: 10px; font-family: Verdana, sans-serif; }
+    .comment-entry:last-child { border-bottom: none; }
+    .comment-name { color: #ff99ff; font-weight: bold; }
+    .comment-stars { color: #ffcc00; margin: 0 4px; }
+    .comment-date { color: #996699; font-size: 9px; }
+    .comment-text { color: #ddccdd; }
+    .comment-form { background: #0d000d; border: 1px solid #440044; padding: 6px; }
+    .retro-input { background: #1a001a; border: 1px inset #660066; color: #ff99ff; font-family: Verdana, sans-serif; font-size: 10px; padding: 2px 4px; width: 160px; }
+    .retro-select { background: #1a001a; border: 1px inset #660066; color: #ff99ff; font-family: Verdana, sans-serif; font-size: 10px; }
+    .retro-textarea { background: #1a001a; border: 1px inset #660066; color: #ff99ff; font-family: Verdana, sans-serif; font-size: 10px; padding: 2px 4px; resize: vertical; }
+    .submit-btn { background: #660099; border: 1px solid #ff00ff; color: #ffffff; cursor: pointer; font-size: 10px; font-weight: bold; padding: 3px 10px; font-family: Verdana, sans-serif; margin-top: 2px; }
+    .submit-btn:hover { background: #9900cc; }
+  </style>
+</head>
+<body>
+
+<!-- MARQUEE HEADER -->
+<marquee behavior="scroll" direction="left" scrollamount="4">
+  &hearts; JACK'S COVERS PAGE &hearts; &nbsp;&nbsp;&nbsp; WATCH MY COVERS!! &nbsp;&nbsp;&nbsp;
+  PLZ LEAVE A COMMENT AND RATING!! &nbsp;&nbsp;&nbsp; &hearts; JACK'S COVERS PAGE &hearts;
+</marquee>
+
+<!-- MAIN TITLE -->
+<div id="title">
+  <h1>~*~ Jack's Vault ~*~</h1>
+  <p id="subtitle">
+    <blink>*** COVERS PAGE ***</blink>
+    &nbsp;&nbsp; Last Updated: today
+  </p>
+</div>
+
+<!-- LAYOUT TABLE -->
+<table id="main-table" cellpadding="5" cellspacing="2" border="0">
+  <tr>
+
+    <!-- LEFT SIDEBAR -->
+    <td id="sidebar-left">
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; NAVIGATION &#9668;</div>
+        <a href="index.html">&#187; Home</a><br>
+        <a href="aboutme.html">&#187; About Me</a><br>
+        <a href="myphotos.html">&#187; My Photos</a><br>
+        <a href="poems.html">&#187; My Poems</a><br>
+        <a href="covers.php">&#187; Covers</a><br>
+        <a href="daily.html">&#187; Daily Poll</a><br>
+        <a href="friends.html">&#187; Friends</a><br>
+        <a href="quiz.html">&#187; Quizzes</a><br>
+        <a href="guestbook.php">&#187; Guestbook</a><br>
+        <a href="portfolio.html">&#187; Portfolio</a><br>
+        <a href="contact.html">&#187; Contact</a><br>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; ONLINE STATUS &#9668;</div>
+        &nbsp;xX_KillerJack69_Xx<br>
+        <small><i>AIM: xX_KillerJack69_Xx</i></small><br>
+        <small><i>MSN: jackrogers@hotmail.com</i></small>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; COVERS INFO &#9668;</div>
+        <p style="font-size:10px;">
+          <b>Total Covers:</b> 4<br>
+          <b>Guitar:</b> Fender Strat<br>
+          <b>Amp:</b> Marshall MG15<br>
+          <b>Recorded w/:</b> a webcam lol<br><br>
+          <i style="color:#ff99ff;">"music is my life"</i>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; TOP RATED &#9668;</div>
+        <p style="font-size:10px;">
+          &#9733;&#9733;&#9733;&#9733;&#9733; Wish You Were Here<br>
+          &#9733;&#9733;&#9733;&#9733;&#9734; Rooster<br>
+          &#9733;&#9733;&#9733;&#9733;&#9734; Starman<br>
+          &#9733;&#9733;&#9733;&#9734;&#9734; Comfortably Numb<br>
+        </p>
+      </div>
+    </td>
+
+    <!-- MAIN CONTENT -->
+    <td id="content">
+
+      <div class="content-box">
+        <div class="box-title">&#9733; My Covers!! &#9733;</div>
+        <p>
+          OMG HI!! So I finally got around 2 uploading my guitar covers!! I know the quality is like
+          super bad cuz I only have my webcam but WHATEVER lol. Im still learning so plz be nice!!
+          <b>Leave a comment and rating below each video!!</b> It means SO much to me :)
+        </p>
+        <p style="text-align:center; color:#ff0099;">
+          <b>~*~ Be nice or dont comment at all ~*~</b>
+        </p>
+      </div>
+
+      <!-- VIDEO 1 -->
+      <div class="content-box" id="cover-1">
+        <div class="box-title">&#9733; Cover #1 - Eruption - EVH &#9733;</div>
+        <table width="100%" cellspacing="4">
+          <tr>
+            <td width="60%" valign="top">
+              <div id="video-container-1" class="video-container">
+                <div class="video-screen" id="screen-1">
+                  <div class="video-placeholder">
+                    <p>&#9654; click play to watch!!</p>
+                    <small>Eruption</small>
+                  </div>
+                  <video id="vid-1" width="100%" style="display:none;" controls>
+                    <source src="Resources/Videos/eruption.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="video-controls">
+                  <button onclick="playVid('vid-1','screen-1')" class="vid-btn">&#9654; PLAY</button>
+                  <button onclick="pauseVid('vid-1')" class="vid-btn">&#9646;&#9646; PAUSE</button>
+                  <button onclick="stopVid('vid-1','screen-1')" class="vid-btn">&#9632; STOP</button>
+                  <span style="font-size:9px; color:#cc99ff;">Vol: <input type="range" min="0" max="100" value="80" style="width:50px; accent-color:#cc00cc;" onchange="setVol('vid-1',this.value)"></span>
+                </div>
+              </div>
+            </td>
+            <td width="40%" valign="top" style="font-size:10px; padding-left:6px;">
+              <b style="color:#ff99ff;">Song Info:</b><br>
+              &#9658; <b>Artist:</b> Van Halen<br>
+              &#9658; <b>Album:</b> Van Halen (1978)<br>
+              &#9658; <b>Genre:</b> Hard Rock<br>
+              &#9658; <b>My Gear:</b>Stratocaster, shitty amp<br><br>
+              <b style="color:#ff99ff;">My Notes:</b><br>
+              <i>my first hard solo attempt, i was a beginner back then, i just needed to practice more!! but it's the best i could do at the time</i><br><br>
+              <span id="avg-1" style="color:#ffff00;">Rating: &#9733;&#9733;&#9733;&#9733;&#9733; (4.8)</span><br>
+              <small style="color:#996699;">12 ratings</small>
+            </td>
+          </tr>
+        </table>
+        <!-- COMMENT SECTION -->
+        <div class="comment-section">
+          <div class="box-title" style="font-size:10px;">&#9658; Comments (3) &#9668;</div>
+          <div id="comments-1" class="comments-list">
+            <div class="comment-entry">
+              <span class="comment-name">zeeny_x3</span>
+              <span class="comment-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="comment-date">04/20/03</span><br>
+              <span class="comment-text">OMG JACK THIS IS SO GOOD!!</span>
+            </div>
+            <div class="comment-entry">
+              <span class="comment-name">axl_sloan</span>
+              <span class="comment-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+              <span class="comment-date">04/21/03</span><br>
+              <span class="comment-text">dude nice!! the tone is great. what pickup r u using??</span>
+            </div>
+            <div class="comment-entry">
+              <span class="comment-name">anonymous</span>
+              <span class="comment-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="comment-date">04/22/03</span><br>
+              <span class="comment-text">wow this is really really good!! keep it up :)</span>
+            </div>
+          </div>
+          <div class="comment-form">
+            <b style="font-size:10px;">&#9660; Leave a Comment!!</b><br><br>
+            <table cellspacing="3">
+              <tr>
+                <td style="font-size:10px;">Name:</td>
+                <td><input type="text" id="name-1" class="retro-input" maxlength="30" placeholder="ur screenname"></td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;">Rating:</td>
+                <td>
+                  <select id="rating-1" class="retro-select">
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 stars - AMAZING!!)</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4 stars - rly good!)</option>
+                    <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3 stars - ok i guess)</option>
+                    <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2 stars - meh)</option>
+                    <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1 star - ew)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;" valign="top">Comment:</td>
+                <td><textarea id="comment-1" class="retro-textarea" rows="3" cols="30" placeholder="say sumthing nice!!"></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button onclick="submitComment(1)" class="submit-btn">&#187; POST COMMENT!!</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 2 -->
+      <div class="content-box" id="cover-2">
+        <div class="box-title">&#9733; Cover #2 - "Rooster" - Alice In Chains &#9733;</div>
+        <table width="100%" cellspacing="4">
+          <tr>
+            <td width="60%" valign="top">
+              <div class="video-container">
+                <div class="video-screen" id="screen-2">
+                  <div class="video-placeholder">
+                    <p>&#9654; click play 2 watch!!</p>
+                    <small>covers/rooster.avi</small>
+                  </div>
+                  <video id="vid-2" width="100%" style="display:none;" controls>
+                    <source src="covers/rooster.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="video-controls">
+                  <button onclick="playVid('vid-2','screen-2')" class="vid-btn">&#9654; PLAY</button>
+                  <button onclick="pauseVid('vid-2')" class="vid-btn">&#9646;&#9646; PAUSE</button>
+                  <button onclick="stopVid('vid-2','screen-2')" class="vid-btn">&#9632; STOP</button>
+                  <span style="font-size:9px; color:#cc99ff;">Vol: <input type="range" min="0" max="100" value="80" style="width:50px; accent-color:#cc00cc;" onchange="setVol('vid-2',this.value)"></span>
+                </div>
+              </div>
+            </td>
+            <td width="40%" valign="top" style="font-size:10px; padding-left:6px;">
+              <b style="color:#ff99ff;">Song Info:</b><br>
+              &#9658; <b>Artist:</b> Alice In Chains<br>
+              &#9658; <b>Album:</b> Dirt (1992)<br>
+              &#9658; <b>Genre:</b> Grunge / Heavy Metal<br>
+              &#9658; <b>My Gear:</b> Strat w/ distortion pedal<br><br>
+              <b style="color:#ff99ff;">My Notes:</b><br>
+              <i>AIC is like my all time Favourite band and this song hits SO HARD. RIP Layne Staley omg :(
+              i worked on the jerry cantrell parts 4ever. the solo is kinda rough ngl but its getting better!!</i><br><br>
+              <span id="avg-2" style="color:#ffff00;">Rating: &#9733;&#9733;&#9733;&#9733;&#9734; (4.2)</span><br>
+              <small style="color:#996699;">8 ratings</small>
+            </td>
+          </tr>
+        </table>
+        <div class="comment-section">
+          <div class="box-title" style="font-size:10px;">&#9658; Comments (2) &#9668;</div>
+          <div id="comments-2" class="comments-list">
+            <div class="comment-entry">
+              <span class="comment-name">khad1ja__ig</span>
+              <span class="comment-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="comment-date">04/18/03</span><br>
+              <span class="comment-text">OMG the distortion sounds so good!! what pedal is that?? also ur hair looks cool lol</span>
+            </div>
+            <div class="comment-entry">
+              <span class="comment-name">MetalDude99</span>
+              <span class="comment-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+              <span class="comment-date">04/19/03</span><br>
+              <span class="comment-text">decent but the solo needs work. keep practicing tho!!!</span>
+            </div>
+          </div>
+          <div class="comment-form">
+            <b style="font-size:10px;">&#9660; Leave a Comment!!</b><br><br>
+            <table cellspacing="3">
+              <tr>
+                <td style="font-size:10px;">Name:</td>
+                <td><input type="text" id="name-2" class="retro-input" maxlength="30" placeholder="ur screenname"></td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;">Rating:</td>
+                <td>
+                  <select id="rating-2" class="retro-select">
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 stars - AMAZING!!)</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4 stars - rly good!)</option>
+                    <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3 stars - ok i guess)</option>
+                    <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2 stars - meh)</option>
+                    <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1 star - ew)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;" valign="top">Comment:</td>
+                <td><textarea id="comment-2" class="retro-textarea" rows="3" cols="30" placeholder="say sumthing nice!!"></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button onclick="submitComment(2)" class="submit-btn">&#187; POST COMMENT!!</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 3 -->
+      <div class="content-box" id="cover-3">
+        <div class="box-title">&#9733; Cover #3 - "Starman" - David Bowie &#9733;</div>
+        <table width="100%" cellspacing="4">
+          <tr>
+            <td width="60%" valign="top">
+              <div class="video-container">
+                <div class="video-screen" id="screen-3">
+                  <div class="video-placeholder">
+                    <p>&#9654; click play 2 watch!!</p>
+                    <small>covers/starman.avi</small>
+                  </div>
+                  <video id="vid-3" width="100%" style="display:none;" controls>
+                    <source src="covers/starman.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="video-controls">
+                  <button onclick="playVid('vid-3','screen-3')" class="vid-btn">&#9654; PLAY</button>
+                  <button onclick="pauseVid('vid-3')" class="vid-btn">&#9646;&#9646; PAUSE</button>
+                  <button onclick="stopVid('vid-3','screen-3')" class="vid-btn">&#9632; STOP</button>
+                  <span style="font-size:9px; color:#cc99ff;">Vol: <input type="range" min="0" max="100" value="80" style="width:50px; accent-color:#cc00cc;" onchange="setVol('vid-3',this.value)"></span>
+                </div>
+              </div>
+            </td>
+            <td width="40%" valign="top" style="font-size:10px; padding-left:6px;">
+              <b style="color:#ff99ff;">Song Info:</b><br>
+              &#9658; <b>Artist:</b> David Bowie<br>
+              &#9658; <b>Album:</b> The Rise and Fall of Ziggy Stardust (1972)<br>
+              &#9658; <b>Genre:</b> Glam Rock<br>
+              &#9658; <b>My Gear:</b> Fender Strat, clean tone<br><br>
+              <b style="color:#ff99ff;">My Notes:</b><br>
+              <i>ok so i kno bowie isnt rly my usual thing but this song is just
+              2 beautiful not 2 cover!! i also tried 2 sing a lil bit lmaooo my voice is so bad
+              dont laugh. or do laugh idc haha</i><br><br>
+              <span id="avg-3" style="color:#ffff00;">Rating: &#9733;&#9733;&#9733;&#9733;&#9734; (4.0)</span><br>
+              <small style="color:#996699;">5 ratings</small>
+            </td>
+          </tr>
+        </table>
+        <div class="comment-section">
+          <div class="box-title" style="font-size:10px;">&#9658; Comments (1) &#9668;</div>
+          <div id="comments-3" class="comments-list">
+            <div class="comment-entry">
+              <span class="comment-name">Banshee</span>
+              <span class="comment-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="comment-date">04/16/03</span><br>
+              <span class="comment-text">ur voice isnt THAT bad lmao!! the guitar part is gorgeous tho seriously jack</span>
+            </div>
+          </div>
+          <div class="comment-form">
+            <b style="font-size:10px;">&#9660; Leave a Comment!!</b><br><br>
+            <table cellspacing="3">
+              <tr>
+                <td style="font-size:10px;">Name:</td>
+                <td><input type="text" id="name-3" class="retro-input" maxlength="30" placeholder="ur screenname"></td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;">Rating:</td>
+                <td>
+                  <select id="rating-3" class="retro-select">
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 stars - AMAZING!!)</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4 stars - rly good!)</option>
+                    <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3 stars - ok i guess)</option>
+                    <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2 stars - meh)</option>
+                    <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1 star - ew)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;" valign="top">Comment:</td>
+                <td><textarea id="comment-3" class="retro-textarea" rows="3" cols="30" placeholder="say sumthing nice!!"></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button onclick="submitComment(3)" class="submit-btn">&#187; POST COMMENT!!</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 4 -->
+      <div class="content-box" id="cover-4">
+        <div class="box-title">&#9733; Cover #4 - "Comfortably Numb" - Pink Floyd &#9733;</div>
+        <table width="100%" cellspacing="4">
+          <tr>
+            <td width="60%" valign="top">
+              <div class="video-container">
+                <div class="video-screen" id="screen-4">
+                  <div class="video-placeholder">
+                    <p>&#9654; click play 2 watch!!</p>
+                    <small>covers/comf_numb.avi</small>
+                  </div>
+                  <video id="vid-4" width="100%" style="display:none;" controls>
+                    <source src="covers/comf_numb.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="video-controls">
+                  <button onclick="playVid('vid-4','screen-4')" class="vid-btn">&#9654; PLAY</button>
+                  <button onclick="pauseVid('vid-4')" class="vid-btn">&#9646;&#9646; PAUSE</button>
+                  <button onclick="stopVid('vid-4','screen-4')" class="vid-btn">&#9632; STOP</button>
+                  <span style="font-size:9px; color:#cc99ff;">Vol: <input type="range" min="0" max="100" value="80" style="width:50px; accent-color:#cc00cc;" onchange="setVol('vid-4',this.value)"></span>
+                </div>
+              </div>
+            </td>
+            <td width="40%" valign="top" style="font-size:10px; padding-left:6px;">
+              <b style="color:#ff99ff;">Song Info:</b><br>
+              &#9658; <b>Artist:</b> Pink Floyd<br>
+              &#9658; <b>Album:</b> The Wall (1979)<br>
+              &#9658; <b>Genre:</b> Prog Rock / Psychedelic<br>
+              &#9658; <b>My Gear:</b> Strat + wah pedal + delay<br><br>
+              <b style="color:#ff99ff;">My Notes:</b><br>
+              <i>ok ngl this solo is WAY 2 hard 4 me lmao. gilmour is literally a god.
+              i messed up like 3 times during the big solo but i kept going lol. still proud of this one!!
+              its a WIP so i might reupload it later!!</i><br><br>
+              <span id="avg-4" style="color:#ffff00;">Rating: &#9733;&#9733;&#9733;&#9734;&#9734; (3.5)</span><br>
+              <small style="color:#996699;">4 ratings</small>
+            </td>
+          </tr>
+        </table>
+        <div class="comment-section">
+          <div class="box-title" style="font-size:10px;">&#9658; Comments (0) &#9668;</div>
+          <div id="comments-4" class="comments-list">
+            <p style="font-size:10px; font-style:italic; color:#996699;">&nbsp;no comments yet!! be the first 2 comment!!</p>
+          </div>
+          <div class="comment-form">
+            <b style="font-size:10px;">&#9660; Leave a Comment!!</b><br><br>
+            <table cellspacing="3">
+              <tr>
+                <td style="font-size:10px;">Name:</td>
+                <td><input type="text" id="name-4" class="retro-input" maxlength="30" placeholder="ur screenname"></td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;">Rating:</td>
+                <td>
+                  <select id="rating-4" class="retro-select">
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 stars - AMAZING!!)</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4 stars - rly good!)</option>
+                    <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3 stars - ok i guess)</option>
+                    <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2 stars - meh)</option>
+                    <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1 star - ew)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:10px;" valign="top">Comment:</td>
+                <td><textarea id="comment-4" class="retro-textarea" rows="3" cols="30" placeholder="say sumthing nice!!"></textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button onclick="submitComment(4)" class="submit-btn">&#187; POST COMMENT!!</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </td>
+
+    <!-- RIGHT SIDEBAR -->
+    <td id="sidebar-right">
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; BLINKIES &#9668;</div>
+        <div style="text-align:center; line-height:2;">
+          <img src="https://external-media.spacehey.net/media/sxfxt8ozYNZxRnbRCXo6EceJqefu9Z4eR9kETccOIWFI=/https://64.media.tumblr.com/02aafb8de5336865a1c6627c78eb3795/72e2590fb9e2f26c-37/s250x400/c49ae6229e7e68680543723f1b1fc1fca0e79ebc.gifv" alt="HP Fan"><br>
+          <img src="https://external-media.spacehey.net/media/sG8LtA5e8EoTj_c3ycmD3QFEQfxsgUOP--nXNwx6kTtY=/https://64.media.tumblr.com/5d138942ac75363bda574a2f039e4e9b/72e2590fb9e2f26c-51/s250x400/6ca394878fa61678e63758cb4ba0b1d2e23d3f64.gifv" alt="LP"><br>
+          <img src="https://external-media.spacehey.net/media/sJMw7gnXLJaV1XTuCh-B7YbrAqPH6RcmVn5ONAMGpM7I=/https://64.media.tumblr.com/6d12a2374206fe6e8fde0798e3e32894/b4a8996229d50d4f-94/s250x400/3acc1cd69506129cb3b230f1a2d5765969d5869c.gifv" alt="Anime"><br>
+          <img src="https://external-media.spacehey.net/media/sCFJV16q3RQUG0r_FMv1g4f4v1ALf9fmokjzdPq9DezY=/https://64.media.tumblr.com/e37ae14b2830448611ee6aeff95e9081/72e2590fb9e2f26c-e4/s250x400/df35141c404f3845ea7cc5c4c174e78b283124f1.webp" alt="Eco"><br>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+      <div class="sidebar-box">
+        <div class="box-title">&#9658;  <a href="friends.html">&#9829; Friends</a> &#9668;</div>
+        <a href="https://www.instagram.com/axl_sloan_420/">&#9829;axl_sloan</a><br>
+        <a href="https://www.instagram.com/zeeny_x3/">&#9829;zeeny_x3</a><br>
+        <a href="https://www.instagram.com/khad1ja__ig">&#9829; khad1ja__ig</a><br>
+        <a href="https://www.instagram.com/___wonder_of_you___/">&#9829; Banshee </a><br>
+      </div>
+
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; RECENTLY ADDED &#9668;</div>
+        <p style="font-size:10px;">
+          &#9658; <a href="#cover-4">Comfortably Numb</a><br>
+          &nbsp;&nbsp;<small>04/23/03 - NEW!!</small><br><br>
+          &#9658; <a href="#cover-3">Starman</a><br>
+          &nbsp;&nbsp;<small>04/15/03</small><br><br>
+          &#9658; <a href="#cover-2">Rooster</a><br>
+          &nbsp;&nbsp;<small>04/10/03</small><br><br>
+          &#9658; <a href="#cover-1">Wish You Were Here</a><br>
+          &nbsp;&nbsp;<small>04/01/03</small><br>
+        </p>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="box-title">&#9658; WEBRINGS &#9668;</div>
+        <p style="font-size:9px; text-align:center;">
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>HP Fansites Ring</b></a>
+          [<a href="#">next &raquo;</a>]<br><br>
+          [<a href="#">&laquo; prev</a>]
+          <a href="#"><b>Anime Lovers Ring</b></a>
+          [<a href="#">next &raquo;</a>]
+        </p>
+      </div>
+
+    </td>
+
+  </tr>
+</table>
+
+<!-- FOOTER -->
+<div id="footer">
+  <p>
+    &copy; 2003 xX_KillerJack69_Xx's Website &mdash; All rights reserved! <br>
+    <small>Created With Passion, Dedication And Nostalgia</small><br><br>
+    <a href="index.html">Home</a> &bull; <a href="aboutme.html">About</a> &bull; <a href="myphotos.html">Photos</a> &bull;
+    <a href="poems.html">Poems</a> &bull; <a href="guestbook.php">Guestbook</a> &bull; <a href="contact.html">Contact</a>
+  </p>
+  <p>
+    <img src="https://media1.tenor.com/m/7XD9gEkumN8AAAAd/internet-explorer-free.gif" alt="IE6 button" style="width: 90px; height: 30px;">
+    <img src="https://preview.redd.it/winamp-logo-v0-mmhrs1evq1qa1.jpg?auto=webp&s=59563ce9d5d3c515d2c27d04d1f03e7df0265a08" alt="Winamp button" style="width: 90px; height: 30px;">
+    <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Made w Notepad" style="width: 90px; height: 30px;">
+    <img src="https://euroring.neocities.org/images/euroring88x31.png" alt="Go Green" style="width: 90px; height: 30px;">
+  </p>
+</div>
+
+<script src="covers.js"></script>
+
+</body>
+</html>
